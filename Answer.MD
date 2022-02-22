@@ -9,3 +9,9 @@ Downloads content from repository to device and updates the local repository
 
 4) What does the git clone command do ?
 Clones contents of repository in a new directory, at another location
+
+
+Pull Request: https://github.com/batuhanozel20/github-slideshow/pull/4
+
+Branch: https://github.com/batuhanozel20/github-slideshow/tree/Second-Branch
+https://github.com/batuhanozel20/github-slideshow/tree/main
