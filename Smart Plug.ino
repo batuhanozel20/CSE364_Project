@@ -104,33 +104,20 @@ void handle_NotFound(){
 
 String SendHTML(uint8_t led1stat,uint8_t led2stat){
   String ptr = "<!DOCTYPE html> <html>\n";
-  ptr +="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
-  ptr +="<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">";
-  ptr +="<title>LED ve Röle Kontrol</title>\n";
-  ptr +="<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
-  ptr +="body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
-  ptr +=".button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}\n";
-  ptr +=".button-on {background-color: #1abc9c;}\n";
-  ptr +=".button-on:active {background-color: #16a085;}\n";
-  ptr +=".button-off {background-color: #34495e;}\n";
-  ptr +=".button-off:active {background-color: #2c3e50;}\n";
-  ptr +="p {font-size: 14px;color: #888;margin-bottom: 10px;}\n";
-  ptr +="</style>\n";
-  ptr +="</head>\n";
-  ptr +="<body>\n";
-  ptr +="<h1>ESP8266 Web Server Uygulaması</h1>\n";
-    ptr +="<h3>ESP Station(STA) Modunda Kullanılıyor</h3>\n";
+  ptr+="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"><meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"><title>Smart Plug Control Center</title>    <style>html {font-family: Helvetica;display: inline-block;            margin: 0px auto;            text-align: center;        }        body {            margin-top: 50px;            background-repeat:no-repeat;            background-image:url('https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg');            background-size: cover;        }        h1 {            color: #444444;            margin: 50px auto 30px;        }        h3 {            color: #444444;            margin-bottom: 50px;        }        .button {            display: block;            width: 80px;            background-color: #1abc9c;            border: none;            color: white;            padding: 13px 30px;            text-decoration: none;            font-size: 25px;            margin: 0px auto 35px;            cursor: pointer;            border-radius: 4px;        }        .button-on {            background-color: #1abc9c;        }        .button-on:active {            background-color: #16a085;        }        .button-off {            background-color: #ff0000;        }        .button-off:active {            background-color: #ff0000;        }        p {            font-size: 14px;            color: #888;            margin-bottom: 10px;        }        .mytext {    width: 300px;    margin: 0 auto;    margin-left: auto;    margin-right: auto;  }    </style></head><body> ";
+  ptr+="<h1 style=\"color:rgb(255, 255, 255);\">Smart Plug Control Center</h1>";
+  ptr+="<p style=\"color:rgb(255, 255, 255);\">" "Temperature: " + String(temp_val) +" °C" + "</p>";
+  if(led1stat){
+   ptr+="<p style=\"color:rgb(255, 255, 255);\">Smart Plug Status:</p> <a class=\"button button-off\" href=\"/led1off\">Off</a>\n";
+  }  
+  else{ptr +="<p style=\"color:rgb(255, 255, 255);\">Smart Plug Status:</p><a class=\"button button-on\" href=\"/led1on\">On</a>\n";}
   
-   if(led1stat)
-  {ptr +="<p>LED1 Durum: AÇIK</p><a class=\"button button-off\" href=\"/led1off\">KAPAT</a>\n";}
-  else
-  {ptr +="<p>LED1 Durum: KAPALI</p><a class=\"button button-on\" href=\"/led1on\">AÇ</a>\n";}
-  ptr += "<p>" + String(temp_val) +" °C" + "</p>";
-  if(led2stat)
-  {ptr +="<p>LED2 Durum: AÇIK</p><a class=\"button button-off\" href=\"/led2off\">KAPAT</a>\n";}
-  else
-  {ptr +="<p>LED2 Durum: KAPALI</p><a class=\"button button-on\" href=\"/led2on\">AÇ</a>\n";}
-
+  /*if(led2stat){
+  ptr +="<p style=\"color:rgb(255, 255, 255);\">LED2 Durum: On</p><a class=\"button button-off\" href=\"/led2off\">Off</a>\n";
+  }
+  else{
+  ptr +="<p>LED2 Durum: Off</p><a class=\"button button-on\" href=\"/led2on\">On</a>\n";
+  }*/
   ptr +="</body>\n";
   ptr +="</html>\n";
   return ptr;
